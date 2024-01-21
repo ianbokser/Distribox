@@ -4,17 +4,344 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Distribox</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="./Css/style.css">
 </head>
 <body class="body_index">
     <header class="header_index">
-
+        <section class="header_section">
+            <div class="header_logo">
+                <a href="./index.html"><img class="Logo" src="./Images/logo_distriBox.png" alt="Logo Distribox"></a>
+            </div>
+            <div class="header_banner">
+                <div id="carouselExample" class="carousel slide">
+                    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item height_carousel active" data-bs-interval="5000">
+                                <img src="./Images/img_carrusel_auto.jpg" class="d-block w-100 img_carousel" alt="...">
+                            </div>
+                            <div class="carousel-item height_carousel" data-bs-interval="5000">
+                                <img src="./Images/img_carrusel_camion.jpg" class="d-block w-100 img_carousel" alt="...">
+                            </div>
+                            <div class="carousel-item height_carousel" data-bs-interval="5000">
+                                <img src="./Images/img_carrusel_moto.jpg" class="d-block w-100 img_carousel" alt="...">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="header_login">
+                <a class="iniciar_sesion" href="#">Iniciar Sesión</a>
+                <a href="#">Registrarse</a>
+            </div>
+        </section>
+        <nav class="header_nav">
+            <ul class="items">
+                <li class="nav_list">menu1</li>
+                <li class="nav_list">menu2</li>
+                <li class="nav_list">menu3</li>
+                <li class="nav_list">menu4</li>
+                <li class="nav_list">menu5</li>
+                <li class="nav_list">menu6</li>
+                <li class="nav_list">menu7</li>
+                <li class="nav_list">menu8</li>
+            </ul>
+        </nav>
     </header>
     <main class="main_index">
-
+        <section class="productos">
+            <div class="producto producto_desc">
+                <div class="producto_grid">
+                    <p>Imagen</p>
+                </div>
+                <div class="producto_grid producto_codigo">
+                    <p>Código</p>
+                </div>
+                <div class="producto_grid producto_descripcion">
+                    <p>Descripción</p>
+                </div>
+                <div class="producto_grid producto_costo">
+                    <p>Costo</p>
+                </div>
+                <div class="producto_grid producto_venta">
+                    <p>Costo Venta</p>
+                </div>
+                <div class="producto_grid producto_cantidad">
+                    <p>cantidad</p>
+                </div>
+            </div>
+            <div class="producto">
+                <div class="producto_grid producto_foto">
+                    <img class="producto_foto_imagen" src="./Images/logo_distriBox.png" alt="Imagen del producto">
+                </div>
+                <div class="producto_grid producto_codigo">
+                    <p>123321</p>
+                </div>
+                <div class="producto_grid producto_descripcion">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos officiis asperiores expedita</p>
+                </div>
+                <div class="producto_grid producto_costo">
+                    <p>$4000</p>
+                </div>
+                <div class="producto_grid producto_venta">
+                    <p>$8000</p>
+                </div>
+                <section class="producto_grid producto_cantidad">
+                    <input type="number" name="cant" id="cant_productos" class="cant_productos">
+                </section>
+            </div>
+            <div class="producto">
+                <div class="producto_grid producto_foto">
+                    <img class="producto_foto_imagen" src="./Images/logo_distriBox.png" alt="Imagen del producto">
+                </div>
+                <div class="producto_grid producto_codigo">
+                    <p>123321</p>
+                </div>
+                <div class="producto_grid producto_descripcion">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos officiis asperiores expedita</p>
+                </div>
+                <div class="producto_grid producto_costo">
+                    <p>$4000</p>
+                </div>
+                <div class="producto_grid producto_venta">
+                    <p>$8000</p>
+                </div>
+                <section class="producto_grid producto_cantidad">
+                    <!-- <div class="menos">
+                        <p>-</p>
+                        <p>-<br>-</p>
+                    </div> -->
+                    <input type="number" name="cant" id="cant_productos" class="cant_productos">
+                    <!-- <div class="mas">
+                        <p>+</p>
+                        <p>+<br>+</p>
+                    </div> -->
+                </section>
+            </div>
+            <div class="producto">
+                <div class="producto_grid producto_foto">
+                    <img class="producto_foto_imagen" src="./Images/logo_distriBox.png" alt="Imagen del producto">
+                </div>
+                <div class="producto_grid producto_codigo">
+                    <p>123321</p>
+                </div>
+                <div class="producto_grid producto_descripcion">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos officiis asperiores expedita</p>
+                </div>
+                <div class="producto_grid producto_costo">
+                    <p>$4000</p>
+                </div>
+                <div class="producto_grid producto_venta">
+                    <p>$8000</p>
+                </div>
+                <section class="producto_grid producto_cantidad">
+                    <!-- <div class="menos">
+                        <p>-</p>
+                        <p>-<br>-</p>
+                    </div> -->
+                    <input type="number" name="cant" id="cant_productos" class="cant_productos">
+                    <!-- <div class="mas">
+                        <p>+</p>
+                        <p>+<br>+</p>
+                    </div> -->
+                </section>
+            </div>
+            <div class="producto">
+                <div class="producto_grid producto_foto">
+                    <img class="producto_foto_imagen" src="./Images/logo_distriBox.png" alt="Imagen del producto">
+                </div>
+                <div class="producto_grid producto_codigo">
+                    <p>123321</p>
+                </div>
+                <div class="producto_grid producto_descripcion">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos officiis asperiores expedita</p>
+                </div>
+                <div class="producto_grid producto_costo">
+                    <p>$4000</p>
+                </div>
+                <div class="producto_grid producto_venta">
+                    <p>$8000</p>
+                </div>
+                <section class="producto_grid producto_cantidad">
+                    <!-- <div class="menos">
+                        <p>-</p>
+                        <p>-<br>-</p>
+                    </div> -->
+                    <input type="number" name="cant" id="cant_productos" class="cant_productos">
+                    <!-- <div class="mas">
+                        <p>+</p>
+                        <p>+<br>+</p>
+                    </div> -->
+                </section>
+            </div>
+            <div class="producto">
+                <div class="producto_grid producto_foto">
+                    <img class="producto_foto_imagen" src="./Images/logo_distriBox.png" alt="Imagen del producto">
+                </div>
+                <div class="producto_grid producto_codigo">
+                    <p>123321</p>
+                </div>
+                <div class="producto_grid producto_descripcion">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos officiis asperiores expedita</p>
+                </div>
+                <div class="producto_grid producto_costo">
+                    <p>$4000</p>
+                </div>
+                <div class="producto_grid producto_venta">
+                    <p>$8000</p>
+                </div>
+                <section class="producto_grid producto_cantidad">
+                    <!-- <div class="menos">
+                        <p>-</p>
+                        <p>-<br>-</p>
+                    </div> -->
+                    <input type="number" name="cant" id="cant_productos" class="cant_productos">
+                    <!-- <div class="mas">
+                        <p>+</p>
+                        <p>+<br>+</p>
+                    </div> -->
+                </section>
+            </div>
+            <div class="producto">
+                <div class="producto_grid producto_foto">
+                    <img class="producto_foto_imagen" src="./Images/logo_distriBox.png" alt="Imagen del producto">
+                </div>
+                <div class="producto_grid producto_codigo">
+                    <p>123321</p>
+                </div>
+                <div class="producto_grid producto_descripcion">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos officiis asperiores expedita</p>
+                </div>
+                <div class="producto_grid producto_costo">
+                    <p>$4000</p>
+                </div>
+                <div class="producto_grid producto_venta">
+                    <p>$8000</p>
+                </div>
+                <section class="producto_grid producto_cantidad">
+                    <!-- <div class="menos">
+                        <p>-</p>
+                        <p>-<br>-</p>
+                    </div> -->
+                    <input type="number" name="cant" id="cant_productos" class="cant_productos">
+                    <!-- <div class="mas">
+                        <p>+</p>
+                        <p>+<br>+</p>
+                    </div> -->
+                </section>
+            </div>
+            <div class="producto">
+                <div class="producto_grid producto_foto">
+                    <img class="producto_foto_imagen" src="./Images/logo_distriBox.png" alt="Imagen del producto">
+                </div>
+                <div class="producto_grid producto_codigo">
+                    <p>123321</p>
+                </div>
+                <div class="producto_grid producto_descripcion">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos officiis asperiores expedita</p>
+                </div>
+                <div class="producto_grid producto_costo">
+                    <p>$4000</p>
+                </div>
+                <div class="producto_grid producto_venta">
+                    <p>$8000</p>
+                </div>
+                <section class="producto_grid producto_cantidad">
+                    <!-- <div class="menos">
+                        <p>-</p>
+                        <p>-<br>-</p>
+                    </div> -->
+                    <input type="number" name="cant" id="cant_productos" class="cant_productos">
+                    <!-- <div class="mas">
+                        <p>+</p>
+                        <p>+<br>+</p>
+                    </div> -->
+                </section>
+            </div>
+            <div class="producto">
+                <div class="producto_grid producto_foto">
+                    <img class="producto_foto_imagen" src="./Images/logo_distriBox.png" alt="Imagen del producto">
+                </div>
+                <div class="producto_grid producto_codigo">
+                    <p>123321</p>
+                </div>
+                <div class="producto_grid producto_descripcion">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos officiis asperiores expedita</p>
+                </div>
+                <div class="producto_grid producto_costo">
+                    <p>$4000</p>
+                </div>
+                <div class="producto_grid producto_venta">
+                    <p>$8000</p>
+                </div>
+                <section class="producto_grid producto_cantidad">
+                    <!-- <div class="menos">
+                        <p>-</p>
+                        <p>-<br>-</p>
+                    </div> -->
+                    <input type="number" name="cant" id="cant_productos" class="cant_productos">
+                    <!-- <div class="mas">
+                        <p>+</p>
+                        <p>+<br>+</p>
+                    </div> -->
+                </section>
+            </div>
+            <div class="producto">
+                <div class="producto_grid producto_foto">
+                    <img class="producto_foto_imagen" src="./Images/logo_distriBox.png" alt="Imagen del producto">
+                </div>
+                <div class="producto_grid producto_codigo">
+                    <p>123321</p>
+                </div>
+                <div class="producto_grid producto_descripcion">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos officiis asperiores expedita</p>
+                </div>
+                <div class="producto_grid producto_costo">
+                    <p>$4000</p>
+                </div>
+                <div class="producto_grid producto_venta">
+                    <p>$8000</p>
+                </div>
+                <section class="producto_grid producto_cantidad">
+                    <!-- <div class="menos">
+                        <p>-</p>
+                        <p>-<br>-</p>
+                    </div> -->
+                    <input type="number" name="cant" id="cant_productos" class="cant_productos">
+                    <!-- <div class="mas">
+                        <p>+</p>
+                        <p>+<br>+</p>
+                    </div> -->
+                </section>
+            </div>
+        </section>
+        <section class="filters">
+            <div class="buscar">
+                <input type="search" class="search-input" id="buscar" placeholder="Buscar...">
+            </div>
+            <div class="vista_previa">
+                <img class="vista_previa_img" src="./Images/logo_distriBox.png" alt="">
+                <div class="vista_previa_desc">
+                    <p>código: 123321</p>
+                    <p>costo: $4000</p>
+                </div>
+            </div>
+            <div>
+                <button class="options-button">Opciones</button>
+            </div>
+        </section>
     </main>
     <footer class="footer_index">
-
+        <p>&copy; 2024 Distribox. Todos los derechos reservados.</p>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

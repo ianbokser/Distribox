@@ -224,7 +224,6 @@
 
 .footer_index{
     height: 100px;
-    border: 1px solid red;
     display: flex;
     justify-content: center;
     align-items: center;

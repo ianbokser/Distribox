@@ -1,7 +1,7 @@
 import { cargarProductos } from './productsFunctions.js';
 
 document.addEventListener("DOMContentLoaded", function() {
-    fetch('http://localhost:3005/productos')
+    fetch('http://localhost:4000/productos')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Error en la solicitud de productos');

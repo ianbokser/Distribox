@@ -5,7 +5,7 @@ import { productos } from './functionsBack.js';
 import { methods as authentication } from './controllers/authentication_controller.js';
 
 const app = express();
-const port = 3005;
+const port = 4000;
 
 const DB_host = process.env.DB_host;
 const DB_user = process.env.DB_user;

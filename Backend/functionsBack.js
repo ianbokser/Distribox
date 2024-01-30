@@ -70,7 +70,6 @@ async function verificarUsuarioExiste(_host, _user, _password, _database, usuari
                         reject(errorEmail);
                         return;
                     }
-
                     const usuarioExiste = resultsUsuario.length > 0 || resultsEmail.length > 0;
                     resolve(usuarioExiste);
                     connection.end();
@@ -149,8 +148,13 @@ export async function verificarUsuarioYContraseña(_host, _user, _password, _dat
 
                 if (results.length > 0) {
                     const usuarioEncontrado = results[0];
-                    const contraseñaCoincide = await bcryptjs.compare(password, usuarioEncontrado.Contraseña_Cliente);
+                    console.log(usuarioEncontrado);
+                    const storedHashedPassword = usuarioEncontrado.Contraseña_Cliente;
+                    console.log(storedHashedPassword);
 
+                    const contraseñaCoincide = await bcryptjs.compare(password.toString(), storedHashedPassword.toString());
+
+                    console.log(contraseñaCoincide);
                     if (contraseñaCoincide) {
                         resolve(true);
                     } else {
@@ -159,6 +163,7 @@ export async function verificarUsuarioYContraseña(_host, _user, _password, _dat
                 } else {
                     resolve(false);
                 }
+
                 connection.end();
             });
         });

@@ -2,6 +2,7 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import cors from 'cors';
 import { productos } from './functionsBack.js';
+import cookieParser from 'cookie-parser';
 import { methods as authentication } from './controllers/authentication_controller.js';
 
 const app = express();
@@ -15,6 +16,7 @@ const DB_database = process.env.DB_database;
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+app.use(cookieParser());
 
 app.listen(port, () => {
     console.log(`Executing at http://localhost:${port}`);

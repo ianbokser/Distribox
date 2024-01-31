@@ -8,7 +8,6 @@ async function cargarProductos(_host, _user, _password, _database) {
         password: _password,
         database: _database,
     });
-
     return new Promise((resolve, reject) => {
         connection.connect((err) => {
             if (err) {
@@ -16,8 +15,6 @@ async function cargarProductos(_host, _user, _password, _database) {
                 reject(err);
                 return;
             }
-            console.log('Conexión exitosa');
-
             connection.query('SELECT * FROM productoss', (err, rows) => {
                 resolve(rows);
                 connection.end();
@@ -148,15 +145,10 @@ export async function verificarUsuarioYContraseña(_host, _user, _password, _dat
 
                 if (results.length > 0) {
                     const usuarioEncontrado = results[0];
-                    console.log(usuarioEncontrado);
                     const storedHashedPassword = usuarioEncontrado.Contraseña_Cliente;
-                    console.log(storedHashedPassword);
-
                     const contraseñaCoincide = await bcryptjs.compare(password.toString(), storedHashedPassword.toString());
-
-                    console.log(contraseñaCoincide);
                     if (contraseñaCoincide) {
-                        resolve(true);
+                        resolve(usuarioEncontrado.Nom_Cliente);
                     } else {
                         resolve(false);
                     }

@@ -1,6 +1,7 @@
-import mysql from 'mysql';
 import dotenv from 'dotenv';
 import bcryptjs from 'bcryptjs';
+import jsonwebtoken from 'jsonwebtoken';
+import cookieSession from 'cookie-session';
 import { usuarioExiste, agregarNuevoCliente, verificarUsuarioYContraseña } from '../functionsBack.js';
 
 dotenv.config();
@@ -16,24 +17,26 @@ async  function login(req, res){
     if(!user || !password){
         return res.status(400).send({status:"Error",message:"Los campos están incompletos"})
     }
-    const usuarioAResvisar = await verificarUsuarioYContraseña(DB_host, DB_user, DB_password, DB_database, user, password);
 
+    const usuarioAResvisar = await verificarUsuarioYContraseña(DB_host, DB_user, DB_password, DB_database, user, password);
+    console.log(usuarioAResvisar);
     if(!usuarioAResvisar){
         return res.status(400).send({status:"Error",message:"Error durante login"})
     }
-    // else{
-    //     const token = jsonwebtoken.sign(
-    //         {user:usuarioAResvisar.user},
-    //         process.env.JWT_SECRET,
-    //         {expiresIn:process.env.JWT_EXPIRATION}
-    //     );
-    //     const cookieOption = {
-    //         expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
-    //         path: "/"
-    //         }
-    //     res.cookie("jwt",token,cookieOption);
-    //     res.send({status:"ok",message:"Usuario loggeado",redirect:"../index.html"});
-    // }
+
+    else{
+        const token = jsonwebtoken.sign(
+            {user:usuarioAResvisar},
+            process.env.JWT_SECRET,
+            {expiresIn:process.env.JWT_EXPIRATION},
+        );
+        const cookieOption = {
+            expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
+            path: "./",
+        };
+        res.cookie("jwt",token);
+        res.send({status:"ok",message:"Usuario loggeado",redirect:"../index.html"});
+    }
 }
 
 async function register(req, res) {
@@ -51,7 +54,6 @@ async function register(req, res) {
         if (usuarioARevisar) {
             return res.status(400).send({ status: "error", Message: "este usuario ya existe" });
         } else {
-            // const salt = await bcryptjs.genSalt(5);
             const hashPassword = await bcryptjs.hash(password, 5);
             try {
                 agregarNuevoCliente(DB_host, DB_user, DB_password, DB_database, user, email, hashPassword);

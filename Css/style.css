@@ -114,7 +114,7 @@
 .main_index{
     display: flex;
     justify-content: start;
-    height: 680px;
+    height: 95%;
 }
 
 .productos{
@@ -139,7 +139,6 @@
     display: grid;
     grid-template-columns: 1fr 0.5fr 3fr 1fr 1fr 1fr;
     border-radius: 25px;
-    /* padding: 0 0rem; */
     border: 1px solid black;
 }
 
@@ -200,9 +199,7 @@
 /*    Filters    */
 
 .filters{
-    overflow:hidden;
-    width:50%;
-    height: 100%;
+    width: 50%;
     border-radius: 10px;
     padding: 0.5rem;
 }
@@ -314,7 +311,11 @@
     }
 
     .producto{
-        height: 50%;
+        height: 100px;
+    }
+
+    .producto_desc{
+        height: 5%;
     }
 }
 

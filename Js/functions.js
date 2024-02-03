@@ -44,6 +44,10 @@ export function cargarProductos(productos) {
     });
 }
 
-// export function vistaPrevia(data) {
-
-// }  
+export function crateToken(token){
+    const tiempoExpiracion = 3600 * 1000;
+    const fechaExpiracion = new Date();
+    fechaExpiracion.setTime(fechaExpiracion.getTime() + tiempoExpiracion);
+    localStorage.setItem("jwt", token);
+    localStorage.setItem("expiracion", fechaExpiracion.getTime().toString());
+}

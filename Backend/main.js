@@ -3,8 +3,9 @@ import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
-import { productos } from './helpers/functionsBack.js';
+import { productos } from './helpers/functionsDB.js';
 import { methods as authentication } from './controllers/authentication_controller.js';
+import { methods as giveuser } from './helpers/user.js';
 // import { methods as authorization } from './middlewares/authorization.js';
 
 const app = express();
@@ -31,6 +32,6 @@ app.get('/productos', async (_req, res) => {
     res.send(listProducts);
 });
 
-// app.get("/",authorization.soloPublico, (req,res)=> res.sendFile(__dirname + "./index.html"));
+app.post("/api/user", giveuser.user);
 app.post("/api/register", authentication.register);
 app.post("/api/login", authentication.login);

@@ -1,6 +1,10 @@
-import { cargarProductos } from './functions.js';
+import { cargarProductos } from "./functions.js";
+
 const tokenRecuperado = localStorage.getItem("jwt");
 const fechaExpiracionRecuperada = localStorage.getItem("expiracion");
+
+var iniciarSesionLink = document.querySelector('.iniciar_sesion');
+var registrarseLink = document.querySelector('.header_login a[href="./pages/register.html"]');
 
 document.addEventListener("DOMContentLoaded", function() {
     fetch('http://localhost:4000/productos')
@@ -12,35 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(data => {
             if (Array.isArray(data)) {
-                cargarProductos(data);
-                
-                // const productos = document.querySelectorAll(".producto");
-                // const vistaPrevia = document.querySelector(".vista_imagen");
-            
-                // productos.forEach(function(producto) {
-                //     producto.addEventListener("click", function() {
-                //         // Obtener el código del producto clickeado
-                //         const codigoProductoClickeado = producto.querySelector(".producto_codigo p").textContent;
-                //         console.log(codigoProductoClickeado)
-                //         // Buscar el producto correspondiente en la lista de productos
-                //         const clickedProducto = data.find(p => p.codigo === codigoProductoClickeado);
-                //         console.log(clickedProducto)
-                //         if (clickedProducto) {
-                //             // Actualizar la vista previa
-                //             vistaPrevia.innerHTML = `
-                //                 <div class="vista_previa">
-                //                     <img class="vista_previa_img" src="${clickedProducto.img}" alt="">
-                //                     <div class="vista_previa_desc">
-                //                         <p>código: ${clickedProducto.codigo}</p>
-                //                         <p>costo: $${clickedProducto.costo}</p>
-                //                     </div>
-                //                 </div>
-                //             `;
-                //         } else {
-                //             console.error(`No se encontró el producto con código ${codigoProductoClickeado}`);
-                //         }
-                //     });
-                // });        
+                cargarProductos(data);    
             } else {
                 console.error('La respuesta no es un array:', data);
             }
@@ -52,17 +28,33 @@ document.addEventListener("DOMContentLoaded", function() {
 document.getElementById("button_login").addEventListener("click", () => {
         console.log("cerrar sesión");
         localStorage.removeItem("jwt");
+        localStorage.removeItem("expiracion");
 });
-
 
 if (tokenRecuperado && fechaExpiracionRecuperada) {
     const fechaExpiracion = new Date(parseInt(fechaExpiracionRecuperada, 10));
-    if (fechaExpiracion > new Date()) {
-        console.log("El token no ha expirado");
-    } else {
+    if (fechaExpiracion < new Date()) {
         console.log("El token ha expirado");
         localStorage.removeItem("jwt");
         localStorage.removeItem("expiracion");
+    } else {
+        var jwt = localStorage.getItem('jwt');
+        const res = await fetch("http://localhost:4000/api/user",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify({
+                token: jwt,
+            })
+        });
+        const resJson = await res.json();
+        console.log(resJson);
+        if (res.ok){
+            var nuevoContenido = `<p class="user">${resJson.user}</p>`;
+            iniciarSesionLink.outerHTML = nuevoContenido;
+            registrarseLink.outerHTML = '';
+        }
     }
 } else {
     console.log("No hay token almacenado");

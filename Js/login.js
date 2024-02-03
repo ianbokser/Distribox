@@ -1,5 +1,7 @@
 const mensajeError = document.getElementsByClassName("error")[0]
 
+import { crateToken } from "./functions.js"
+
 document.getElementById("login-form").addEventListener("submit",async (e)=>{
     e.preventDefault();
     const user = e.target.children.user.value;
@@ -15,12 +17,8 @@ document.getElementById("login-form").addEventListener("submit",async (e)=>{
 });
     if(!res.ok) return mensajeError.classList.toggle("escondido",false);
     const resJson = await res.json();
-    if (resJson.redirect) {
-        const tiempoExpiracion = 20000;
-        const fechaExpiracion = new Date();
-        fechaExpiracion.setTime(fechaExpiracion.getTime() + tiempoExpiracion);
-        localStorage.setItem("jwt", resJson.token);
-        localStorage.setItem("expiracion", fechaExpiracion.getTime().toString());
+    if (resJson.redirect && resJson.token) {
+        crateToken(resJson.token);
         window.location.href = resJson.redirect;
     }
 })

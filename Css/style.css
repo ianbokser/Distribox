@@ -60,6 +60,15 @@
     font-size: 1.5rem;
     font-weight: bold;
 }
+.user{
+    padding: 0.5rem 1rem;
+    background-color: var(--clr-black);
+    color: var(--clr-white);
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: 0.2s;
+    margin: 0;
+}
 
 .button_login{
     display: flex;

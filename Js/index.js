@@ -1,4 +1,6 @@
-import { cargarProductos } from './productsFunctions.js';
+import { cargarProductos } from './functions.js';
+const tokenRecuperado = localStorage.getItem("jwt");
+const fechaExpiracionRecuperada = localStorage.getItem("expiracion");
 
 document.addEventListener("DOMContentLoaded", function() {
     fetch('http://localhost:4000/productos')
@@ -45,3 +47,23 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch(error => console.error('Error en el fetch:', error));
 });
+
+
+document.getElementById("button_login").addEventListener("click", () => {
+        console.log("cerrar sesión");
+        localStorage.removeItem("jwt");
+});
+
+
+if (tokenRecuperado && fechaExpiracionRecuperada) {
+    const fechaExpiracion = new Date(parseInt(fechaExpiracionRecuperada, 10));
+    if (fechaExpiracion > new Date()) {
+        console.log("El token no ha expirado");
+    } else {
+        console.log("El token ha expirado");
+        localStorage.removeItem("jwt");
+        localStorage.removeItem("expiracion");
+    }
+} else {
+    console.log("No hay token almacenado");
+}

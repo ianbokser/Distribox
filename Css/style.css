@@ -61,6 +61,18 @@
     font-weight: bold;
 }
 
+.button_login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: var(--clr-black);
+    color: var(--clr-white);
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: 0.2s;
+}
+
 /*    Nav    */
 
 .section_nav{
@@ -114,7 +126,7 @@
 .main_index{
     display: flex;
     justify-content: start;
-    height: 95%;
+    height: 80%;
 }
 
 .productos{

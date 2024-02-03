@@ -16,6 +16,11 @@ document.getElementById("login-form").addEventListener("submit",async (e)=>{
     if(!res.ok) return mensajeError.classList.toggle("escondido",false);
     const resJson = await res.json();
     if (resJson.redirect) {
+        const tiempoExpiracion = 20000;
+        const fechaExpiracion = new Date();
+        fechaExpiracion.setTime(fechaExpiracion.getTime() + tiempoExpiracion);
+        localStorage.setItem("jwt", resJson.token);
+        localStorage.setItem("expiracion", fechaExpiracion.getTime().toString());
         window.location.href = resJson.redirect;
-    }  
+    }
 })

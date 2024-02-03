@@ -1,8 +1,8 @@
 import dotenv from 'dotenv';
 import bcryptjs from 'bcryptjs';
 import jsonwebtoken from 'jsonwebtoken';
-import cookieSession from 'cookie-session';
-import { usuarioExiste, agregarNuevoCliente, verificarUsuarioYContraseña } from '../functionsBack.js';
+
+import { usuarioExiste, agregarNuevoCliente, verificarUsuarioYContraseña } from '../helpers/functionsDB.js';
 
 dotenv.config();
 
@@ -19,23 +19,16 @@ async  function login(req, res){
     }
 
     const usuarioAResvisar = await verificarUsuarioYContraseña(DB_host, DB_user, DB_password, DB_database, user, password);
-    console.log(usuarioAResvisar);
     if(!usuarioAResvisar){
         return res.status(400).send({status:"Error",message:"Error durante login"})
     }
 
-    else{
-        const token = jsonwebtoken.sign(
-            {user:usuarioAResvisar},
-            process.env.JWT_SECRET,
-            {expiresIn:process.env.JWT_EXPIRATION},
-        );
-        const cookieOption = {
-            expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
-            path: "./",
-        };
-        res.cookie("jwt",token);
-        res.send({status:"ok",message:"Usuario loggeado",redirect:"../index.html"});
+    else {
+        const tokenSession = jsonwebtoken.sign({
+            name: usuarioAResvisar,
+            exp: Date.now() + 60 * 1000,
+        }, process.env.JWT_SECRET);
+        res.send({ token: tokenSession, redirect: "../index.html" });
     }
 }
 

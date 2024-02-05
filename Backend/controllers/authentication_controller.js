@@ -25,7 +25,8 @@ async  function login(req, res){
 
     else {
         const tokenSession = jsonwebtoken.sign({
-            name: usuarioAResvisar,
+            name: usuarioAResvisar.Nom_Cliente,
+            descuento: usuarioAResvisar.Descuento_Cliente,
         }, process.env.JWT_SECRET);
         res.send({ token: tokenSession, redirect: "../index.html" });
     }

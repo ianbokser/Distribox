@@ -1,10 +1,11 @@
-import { cargarProductos } from "./functions.js";
+import { cargarProductos,userName,cerrarSesion,tokenData,tokenExpired } from "./functions.js";
 
 const tokenRecuperado = localStorage.getItem("jwt");
 const fechaExpiracionRecuperada = localStorage.getItem("expiracion");
+var elementosIniciarSesion = document.querySelectorAll('.iniciar_sesion');
+var contenedor = document.querySelector('.header_login');
+var elementoP = contenedor.querySelector('.user');
 
-var iniciarSesionLink = document.querySelector('.iniciar_sesion');
-var registrarseLink = document.querySelector('.header_login a[href="./pages/register.html"]');
 
 document.addEventListener("DOMContentLoaded", function() {
     fetch('http://localhost:4000/productos')
@@ -14,9 +15,15 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             return response.json();
         })
-        .then(data => {
+        .then(async data => {
             if (Array.isArray(data)) {
-                cargarProductos(data);    
+                const percent = await tokenData();
+                if (percent.ok){
+                    var porcentaje = percent.descuento;
+                }else{
+                    var porcentaje = 0;
+                }
+                cargarProductos(data, porcentaje);    
             } else {
                 console.error('La respuesta no es un array:', data);
             }
@@ -27,35 +34,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
 document.getElementById("button_login").addEventListener("click", () => {
         console.log("cerrar sesión");
-        localStorage.removeItem("jwt");
-        localStorage.removeItem("expiracion");
+            cerrarSesion(contenedor, elementoP);
+            location.reload();
 });
 
-if (tokenRecuperado && fechaExpiracionRecuperada) {
-    const fechaExpiracion = new Date(parseInt(fechaExpiracionRecuperada, 10));
-    if (fechaExpiracion < new Date()) {
-        console.log("El token ha expirado");
-        localStorage.removeItem("jwt");
-        localStorage.removeItem("expiracion");
-    } else {
-        var jwt = localStorage.getItem('jwt');
-        const res = await fetch("http://localhost:4000/api/user",{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body: JSON.stringify({
-                token: jwt,
-            })
-        });
-        const resJson = await res.json();
-        console.log(resJson);
-        if (res.ok){
-            var nuevoContenido = `<p class="user">${resJson.user}</p>`;
-            iniciarSesionLink.outerHTML = nuevoContenido;
-            registrarseLink.outerHTML = '';
-        }
-    }
-} else {
-    console.log("No hay token almacenado");
+const tokenExpiredResults = tokenExpired(tokenRecuperado,fechaExpiracionRecuperada);
+if (tokenExpiredResults){
+    const tokenDataResult = await tokenData();
+    userName(tokenDataResult.user, elementosIniciarSesion, contenedor);
 }

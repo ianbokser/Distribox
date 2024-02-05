@@ -30,6 +30,7 @@
     display: flex;
     width: 100vw;
     justify-content: space-between;
+    align-items: end;
     background-color: var(--clr-gray);
     border-bottom: 3px solid var(--clr-black);
     padding: 1rem 1rem;
@@ -54,20 +55,25 @@
     justify-content:space-around;
 }
 
-.header_login>a{
+.header_login_user{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 20%;
+    height: 50%;
+}
+
+.iniciar_sesion{
     text-decoration: none;
     color: var(--clr-black);
     font-size: 1.5rem;
     font-weight: bold;
 }
+
 .user{
-    padding: 0.5rem 1rem;
-    background-color: var(--clr-black);
-    color: var(--clr-white);
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: 0.2s;
-    margin: 0;
+    color: black;
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
 .button_login{

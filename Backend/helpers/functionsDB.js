@@ -148,7 +148,7 @@ export async function verificarUsuarioYContraseña(_host, _user, _password, _dat
                     const storedHashedPassword = usuarioEncontrado.Contraseña_Cliente;
                     const contraseñaCoincide = await bcryptjs.compare(password, storedHashedPassword);
                     if (contraseñaCoincide) {
-                        resolve(usuarioEncontrado.Nom_Cliente);
+                        resolve(usuarioEncontrado);
                     } else {
                         resolve(false);
                     }
